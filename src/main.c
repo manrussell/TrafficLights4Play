@@ -15,9 +15,12 @@
  * Prototypes 
  */
 static void TLOne_red( void );
+static void TLOne_redYellow( void );
 static void TLOne_yellow( void );
 static void TLOne_green( void );
+
 static void TLTwo_red( void );
+static void TLTwo_redYellow( void );
 static void TLTwo_yellow( void );
 static void TLTwo_green( void );
 
