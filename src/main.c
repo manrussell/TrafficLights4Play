@@ -1,9 +1,15 @@
+/*
+ *    include path for stm8...
+ *    "/home/xxxxx/.platformio/packages/toolchain-sdcc/share/sdcc/include"
+ *    Also the IAR #include <intrinsics.h> so commenting it out removes any 
+ *    warning squiggles...
+ */
 #include <Arduino.h>
 
 /*
  * Macros
  */
-#define DEBUG_MODE      (1u)
+// #define DEBUG_MODE      (1)
 
 /* 
  * Prototypes 
@@ -95,6 +101,7 @@ void setup( )
 
 void loop( ) 
 {
+    delay(1000); 
     // read the state of the switch into a local variable:
     int reading = digitalRead( pinButton );
 
@@ -147,7 +154,8 @@ void loop( )
             TLTwo_red( );
             break;
         case 3:
-            TLOne_yellow( );
+            // TLOne_yellow( );
+            TLOne_redYellow( );
             TLTwo_red( );
             break;
         case 4:
@@ -166,7 +174,8 @@ void loop( )
             break;
         case 7:
             TLOne_red( );
-            TLTwo_yellow( );
+            // TLTwo_yellow( );
+            TLTwo_redYellow( );
             break;
         case 8:
             state = 0;
@@ -188,9 +197,9 @@ static void TLOne_red( void )
     digitalWrite( pinGreen1,   LOW );
 }
 
-static void TLOne_yellow( void )
+static void TLOne_redYellow( void )
 {
-    digitalWrite( pinRed1,     LOW );
+    digitalWrite( pinRed1,     HIGH );
     digitalWrite( pinYellow1,  HIGH );
     digitalWrite( pinGreen1,   LOW );
 }
@@ -202,6 +211,13 @@ static void TLOne_green( void )
     digitalWrite( pinGreen1,   HIGH );
 }
 
+static void TLOne_yellow( void )
+{
+    digitalWrite( pinRed1,     LOW );
+    digitalWrite( pinYellow1,  HIGH );
+    digitalWrite( pinGreen1,   LOW );
+}
+
 static void TLTwo_red( void )
 {
     digitalWrite( pinRed2,     HIGH );
@@ -209,9 +225,9 @@ static void TLTwo_red( void )
     digitalWrite( pinGreen2,   LOW );
 }
 
-static void TLTwo_yellow( void )
+static void TLTwo_redYellow( void )
 {
-    digitalWrite( pinRed2,     LOW );
+    digitalWrite( pinRed2,     HIGH );
     digitalWrite( pinYellow2,  HIGH );
     digitalWrite( pinGreen2,   LOW );
 }
@@ -221,6 +237,13 @@ static void TLTwo_green( void )
     digitalWrite( pinRed2,     LOW );
     digitalWrite( pinYellow2,  LOW );
     digitalWrite( pinGreen2,   HIGH );
+}
+
+static void TLTwo_yellow( void )
+{
+    digitalWrite( pinRed2,     LOW );
+    digitalWrite( pinYellow2,  HIGH );
+    digitalWrite( pinGreen2,   LOW );
 }
 
 
